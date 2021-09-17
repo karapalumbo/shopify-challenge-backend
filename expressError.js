@@ -16,11 +16,11 @@ class NotFoundError extends ExpressError {
 
 /** 401 UNAUTHORIZED error. */
 
-// class UnauthorizedError extends ExpressError {
-//   constructor(message = "Unauthorized") {
-//     super(message, 401);
-//   }
-// }
+class UnauthorizedError extends ExpressError {
+  constructor(message = "Unauthorized") {
+    super(message, 401);
+  }
+}
 
 /** 400 BAD REQUEST error. */
 
