@@ -1,15 +1,11 @@
-CREATE TABLE users (
-  username VARCHAR(25) PRIMARY KEY,
-  password TEXT NOT NULL,
-  first_name TEXT NOT NULL, 
-  last_name TEXT NOT NULL,
-  email TEXT NOT NULL
-);
-
-CREATE TABLE photos (
-  id SERIAL PRIMARY KEY,
-  name TEXT, 
-  description TEXT, 
-  image TEXT, 
+CREATE TABLE images (
+  id SERIAL NOT NULL PRIMARY KEY,
+  filename TEXT UNIQUE, 
+  filepath TEXT, 
+  mimetype TEXT, 
+  size BIGINT,
+  description TEXT,
   price INTEGER
 );
+
+

@@ -7,9 +7,7 @@ const cors = require("cors");
 
 const { NotFoundError } = require("./expressError");
 
-// const { authenticateJWT } = require("./middleware/auth");
-// const authRoutes = require("./routes/auth");
-const photoRoutes = require("./routes/photos");
+const imageRoutes = require("./routes/images");
 
 const morgan = require("morgan");
 
@@ -18,10 +16,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
-// app.use(authenticateJWT);
 
-// app.use("/auth", authRoutes);
-app.use("/photos", photoRoutes);
+app.use("/", imageRoutes);
+// app.use("/images", imageRoutes);
+// app.use("/image", imageRoutes);
 
 /** Handle 404 errors */
 app.use(function (req, res, next) {
