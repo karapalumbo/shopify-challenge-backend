@@ -10,6 +10,7 @@ const { NotFoundError } = require("./expressError");
 const imageRoutes = require("./routes/images");
 
 const morgan = require("morgan");
+const path = require("path");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.use("/", imageRoutes);
+app.use(express.static("images"));
 // app.use("/images", imageRoutes);
 // app.use("/image", imageRoutes);
 

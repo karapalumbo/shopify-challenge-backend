@@ -6,7 +6,6 @@ CREATE DATABASE shopify;
 \connect shopify
 
 \i schema.sql
--- \i seed.sql
 
 \echo 'Delete and recreate shopify_test db?'
 \prompt 'Return for yes or control-C to cancel > ' foo
