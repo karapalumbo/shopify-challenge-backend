@@ -20,8 +20,6 @@ app.use(morgan("tiny"));
 
 app.use("/", imageRoutes);
 app.use(express.static("images"));
-// app.use("/images", imageRoutes);
-// app.use("/image", imageRoutes);
 
 /** Handle 404 errors */
 app.use(function (req, res, next) {

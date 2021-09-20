@@ -2,11 +2,7 @@
 
 /** Routes for images. */
 
-const jsonschema = require("jsonschema");
-
 const express = require("express");
-const { BadRequestError } = require("../expressError");
-const Image = require("../models/image");
 const multer = require("multer");
 const path = require("path");
 const db = require("../db");
@@ -54,14 +50,8 @@ router.get("/images", async function (req, res) {
         const dirName = path.resolve();
         const fullFilepath = path.join(dirName, "images/" + image.filename);
         imageFiles.push(fullFilepath);
-
-        // return res.type(image.mimetype).send(fullFilepath);
       });
       return res.send({ imageFiles });
-      // const dirName = path.resolve();
-      // const fullFilepath = path.join(dirName, "images/" + q.filename);
-      // const images = await Image.findAll(fullFilepath);
-      // return res.send(images.rows[1].filename);
     })
     .catch((err) =>
       res.status(404).json({
@@ -70,9 +60,6 @@ router.get("/images", async function (req, res) {
         stack: err.stack,
       })
     );
-  // const imageRes = await db.query(sqlQuery);
-  // console.log(imageRes.rows[0]);
-  // return imageRes.rows;
 });
 
 router.post(
@@ -102,9 +89,6 @@ router.post(
           stack: err.stack,
         })
       );
-    // res.redirect("/");
-    // const image = await Image.add(q);
-    // res.json({ image });
   }
 );
 
