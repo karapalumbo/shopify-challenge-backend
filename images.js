@@ -25,6 +25,11 @@ const imageUpload = multer({
  *
  */
 
+router.get("/"),
+  async function (req, res) {
+    return "Welcome!";
+  };
+
 router.get("/images", async function (req, res) {
   // const q = req.query;
 
