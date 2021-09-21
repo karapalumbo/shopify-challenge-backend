@@ -49,7 +49,7 @@ router.get("/images", async function (req, res) {
 
       imagesData.map((image) => {
         const dirName = path.resolve();
-        const fullFilepath = path.join(dirName, "images/" + image.filename);
+        const fullFilepath = path.join(dirName, "/images/" + image.filename);
         imageFiles.push(fullFilepath);
       });
       return res.send({ imageFiles, imagesData });
