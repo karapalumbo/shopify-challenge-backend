@@ -26,7 +26,7 @@ const imageUpload = multer({
  */
 
 router.get("/images", async function (req, res) {
-  const q = req.query;
+  // const q = req.query;
 
   let sqlQuery = `SELECT id,
                       filename,
@@ -47,7 +47,6 @@ router.get("/images", async function (req, res) {
         const fullFilepath = path.join(dirName, "images/" + image.filename);
         imageFiles.push(fullFilepath);
       });
-
       return res.send({ imageFiles, imagesData });
     })
     .catch((err) =>
@@ -81,8 +80,6 @@ router.post(
                           '${mimetype}',
                           '${size}')`;
     const file = req.file;
-    console.log("FILEEEE", file);
-
     await db
       .query(sqlQuery)
       .then(() => res.send({ success: true, file }))
@@ -96,10 +93,12 @@ router.post(
   }
 );
 
+/** DELETE /delete/filename
+ */
+
 router.delete("/delete/:filename", async function (req, res, next) {
   try {
     const filenameParam = req.params.filename;
-    console.log("RESPPP", req.body);
     await db.query(`DELETE FROM images WHERE filename = $1`, [filenameParam]);
     res.send({ success: true });
   } catch (err) {
