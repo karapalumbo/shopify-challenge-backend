@@ -47,7 +47,8 @@ router.get("/images", async function (req, res) {
         const fullFilepath = path.join(dirName, "images/" + image.filename);
         imageFiles.push(fullFilepath);
       });
-      return res.send({ imageFiles });
+
+      return res.send({ imageFiles, imagesData });
     })
     .catch((err) =>
       res.status(404).json({
@@ -80,6 +81,7 @@ router.post(
                           '${mimetype}',
                           '${size}')`;
     const file = req.file;
+    console.log("FILEEEE", file);
 
     await db
       .query(sqlQuery)
@@ -93,5 +95,14 @@ router.post(
       );
   }
 );
+
+router.delete("/delete/:filename", async function (req, res, next) {
+  try {
+    const filenameParam = req.params.filename;
+    await db.query(`DELETE FROM images WHERE filename = $1`, [filenameParam]);
+  } catch (err) {
+    return next(err);
+  }
+});
 
 module.exports = router;
