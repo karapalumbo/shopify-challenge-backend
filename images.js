@@ -1,11 +1,11 @@
 "use strict";
 
-/** Routes for images. */
+/** Routes and queries for images. */
 
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-const db = require("../db");
+const db = require("./db");
 
 const router = express.Router({ mergeParams: true });
 
@@ -24,10 +24,6 @@ const imageUpload = multer({
  *   { images: [ { id, filename, filepath, mimetype, size }, ...] }
  *
  */
-
-router.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
 router.get("/images", async function (req, res) {
   const q = req.query;
@@ -62,6 +58,11 @@ router.get("/images", async function (req, res) {
     );
 });
 
+/** POST /image =>
+ *   { images: [ { id, filename, filepath, mimetype, size }, ...] }
+ *
+ */
+
 router.post(
   "/image",
   imageUpload.single("image"),
@@ -79,6 +80,7 @@ router.post(
                           '${mimetype}',
                           '${size}')`;
     const file = req.file;
+
     await db
       .query(sqlQuery)
       .then(() => res.send({ success: true, file }))

@@ -7,10 +7,9 @@ const cors = require("cors");
 
 const { NotFoundError } = require("./expressError");
 
-const imageRoutes = require("./routes/images");
+const imageRoutes = require("./images");
 
 const morgan = require("morgan");
-const path = require("path");
 
 const app = express();
 
