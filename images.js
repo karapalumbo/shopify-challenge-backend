@@ -99,7 +99,9 @@ router.post(
 router.delete("/delete/:filename", async function (req, res, next) {
   try {
     const filenameParam = req.params.filename;
+    console.log("RESPPP", req.body);
     await db.query(`DELETE FROM images WHERE filename = $1`, [filenameParam]);
+    res.send({ success: true });
   } catch (err) {
     return next(err);
   }
